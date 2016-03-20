@@ -20,7 +20,7 @@ The idea is to place the following code at the beginning of a script:
 
 ```
 # Load all packages referenced in this script, installing as necessary.
-source("imp.R")
+source("imp.R"); load.my.pkgs()
 ```
 
 ... assuming that the path to `imp.R` is correct given its actual location.
