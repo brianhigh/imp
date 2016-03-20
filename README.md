@@ -16,10 +16,10 @@ needlessly install a package to a system which already had that package.
 
 The idea is to place the following code at the beginning of a script:
 
----
+```
 # Load all packages referenced in this script, installing as necessary.
 source("imp.R")
----
+```
 
 ... assuming that the path to `imp.R` is correct given its actual location.
 
