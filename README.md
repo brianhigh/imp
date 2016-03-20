@@ -35,6 +35,28 @@ script for `library`, `require`, and `install.packages` function calls,
 attempt to load those packages passed to those functions, and attempt to 
 install any packages which fail to load.
 
+Note: This will only work for `library`, `require`, etc., function calls 
+which fit on a single line. If the statement spans more than one line, only
+the packages listed on the same line as the `library`, `require`, etc., 
+function name will be loaded. Since most R programs only load a small
+number of packages in any given statement, this is not seen as a major
+drawback. If you do have a script with long lists of packages to load,
+either break the the operations into single-line commands, or use the
+function `load.pkgs` instead of `library`, `require`, etc., for these
+situations. The `load.pkgs` is defined in `imp.R` and will be available
+for use after sourcing the `imp.R` script.
+
+Example:
+
+```
+# Load all packages referenced in this script, installing as necessary.
+source("imp.R"); load.my.pkgs()
+
+# Load a long list of packages which spans multiple lines.
+load.pkgs(c('package1', 'package2', 'package3', 
+            'package4', 'package5', 'package6'))
+```
+
 This script is similar to the R package [install.load](https://cran.r-project.org/web/packages/install.load/index.html) except that it will search your
 calling script for packages to load (or install then load). It contains
 a function `load.pkgs` which is like the `install_load` function in that
