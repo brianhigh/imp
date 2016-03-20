@@ -1,5 +1,7 @@
 # imp: install missing packages
 
+Description: R script to install missing packages referenced from a calling script.
+
 This repository and the R script it hosts has been released into the Public
 Domain. Feel free to use it without restriction. See the LICENSE file for
 more information. (Creative Commons Legal Code CC0 1.0 Universal)
@@ -32,3 +34,8 @@ already installed or not. The `imp.R` script will search the calling
 script for `library`, `require`, and `install.packages` function calls, 
 attempt to load those packages passed to those functions, and attempt to 
 install any packages which fail to load.
+
+This script is similar to the R package [install.load](https://cran.r-project.org/web/packages/install.load/index.html] except that it will search your
+calling script for packages to load (or install then load). It contains
+a function `load.pkgs` which is like the `install_load` function in that
+package. You may edit `load.pkgs` to use a different mirror.
