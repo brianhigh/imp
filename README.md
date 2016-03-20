@@ -43,8 +43,8 @@ number of packages in any given statement, this is not seen as a major
 drawback. If you do have a script with long lists of packages to load,
 either break the the operations into single-line commands, or use the
 function `load.pkgs` instead of `library`, `require`, etc., for these
-situations. The `load.pkgs` is defined in `imp.R` and will be available
-for use after sourcing the `imp.R` script.
+situations. The `load.pkgs` function is defined in `imp.R` and will be 
+available for use after sourcing the `imp.R` script.
 
 Example:
 
