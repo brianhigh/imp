@@ -35,7 +35,7 @@ script for `library`, `require`, and `install.packages` function calls,
 attempt to load those packages passed to those functions, and attempt to 
 install any packages which fail to load.
 
-This script is similar to the R package [install.load](https://cran.r-project.org/web/packages/install.load/index.html] except that it will search your
+This script is similar to the R package [install.load](https://cran.r-project.org/web/packages/install.load/index.html) except that it will search your
 calling script for packages to load (or install then load). It contains
 a function `load.pkgs` which is like the `install_load` function in that
 package. You may edit `load.pkgs` to use a different mirror.
