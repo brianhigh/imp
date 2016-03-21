@@ -13,18 +13,15 @@ load.pkgs <- function(pkgs, repos = "http://cran.r-project.org") {
 
 # If running as a script, try to find all packages referenced in this script.
 # Only works for library(), require(), etc., calls which fit on a single line.
-find.pkgs <- function() {
-    if (length(sys.frames()) > 0) {
-        filename <- sys.frame(1)$ofile
-        pkgs <- readLines(filename, warn = FALSE)
-        pkgs <- unlist(strsplit(x = pkgs, split = ";[ ]*"))
-        pkgs.regex <- "^[^#]*(library|require|install\\.packages)\\s*\\("
-        pkgs <- pkgs[grepl(pkgs.regex, pkgs)]
-        pkgs <- gsub(".*\\((.*)", "\\1", pkgs)
-        pkgs <- gsub("(.*)\\).*", "\\1", pkgs)
-        pkgs <- unlist(strsplit(x = pkgs, split = ",[ ]*"))
-        pkgs <- gsub('[\'"()]', "", pkgs)
-        pkgs <- unique(pkgs[!grepl("=|^x$", pkgs)])
-        return(pkgs)
-    }
+find.pkgs <- function(filename = sys.frame(1)$ofile) {
+    pkgs <- readLines(filename, warn = FALSE)
+    pkgs <- unlist(strsplit(x = pkgs, split = ";[ ]*"))
+    pkgs.regex <- "^[^#]*(library|require|install\\.packages)\\s*\\("
+    pkgs <- pkgs[grepl(pkgs.regex, pkgs)]
+    pkgs <- gsub(".*\\((.*)", "\\1", pkgs)
+    pkgs <- gsub("(.*)\\).*", "\\1", pkgs)
+    pkgs <- unlist(strsplit(x = pkgs, split = ",[ ]*"))
+    pkgs <- gsub('[\'"()]', "", pkgs)
+    pkgs <- unique(pkgs[!grepl("=|^x$", pkgs)])
+    return(pkgs)
 }
