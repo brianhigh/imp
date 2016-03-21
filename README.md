@@ -23,11 +23,18 @@ The idea is to place the following code at the beginning of a script:
 source('imp.R'); imp()
 ```
 
-Or, if you wish to set your preferred package repository:
+Or, if you wish to use your preferred package repository:
 
 ```
 # Load all packages referenced in this script, installing as necessary.
 source('imp.R'); imp(repos = 'http://cran.fhcrc.org')
+```
+
+Or, if you wish to support Bioconductor packages and use `biocLite()`:
+
+```
+# Load all packages referenced in this script, installing as necessary.
+source('imp.R'); imp(bioc = TRUE)
 ```
 
 ... assuming that the path to `imp.R` is correct given its actual location.
