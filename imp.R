@@ -5,10 +5,16 @@
 # Load all packages referenced in a script, installing as necessary.
 # Applies to calling script when sourced using the source() function.
 #
-# Example usage:  source('imp.R'); imp()
-# Example usage:  source('imp.R'); imp(bioc = TRUE)
-# Example usage:  source('imp.R'); imp(repos = 'http://cran.fhcrc.org')
-# Example usage:  source('imp.R'); load.pkgs(find.pkgs('my_script.R'))
+# -------------
+# Example usage
+# -------------
+#
+# source('imp.R')                       # Load the functions from imp.R
+# imp()                                 # Load packages for current script.
+# imp(bioc = TRUE)                      # Same, using biocLite to install.
+# imp(repos = 'http://cran.fhcrc.org')  # Use this repository to install.
+# load.pkgs(find.pkgs('my_script.R'))   # Load packages referenced in a file.
+# load.all.pkgs()                       # Load packages from all R/Rmd files.
 
 # Load one or more packages into memory, installing as needed.
 load.pkgs <- function(pkgs, repos = 'http://cran.r-project.org', bioc = FALSE) {
@@ -49,3 +55,11 @@ find.pkgs <- function(filename = sys.frame(1)$ofile) {
 imp <- function(repos = 'http://cran.r-project.org', bioc = FALSE) {
     load.pkgs(find.pkgs(), repos = repos, bioc = bioc)
 }
+
+# Load packages referenced in all files matching a filename pattern in a path.
+load.all.pkgs <- function(path = '.', pattern = '(.R|.r|.Rmd|.rmd|.RMD)$',
+                          repos = 'http://cran.r-project.org', bioc = FALSE) {
+    load.pkgs(unique(unlist(sapply(list.files(path, pattern), find.pkgs))),
+              repos = repos, bioc = bioc)
+}
+
