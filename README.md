@@ -20,7 +20,14 @@ The idea is to place the following code at the beginning of a script:
 
 ```
 # Load all packages referenced in this script, installing as necessary.
-source("imp.R"); load.my.pkgs()
+source("imp.R"); load.pkgs(find.pkgs())
+```
+
+Or, if you wish to set your preferred package repository:
+
+```
+# Load all packages referenced in this script, installing as necessary.
+source("imp.R"); load.pkgs(find.pkgs(), repos = "http://cran.fhcrc.org")
 ```
 
 ... assuming that the path to `imp.R` is correct given its actual location.
@@ -50,7 +57,7 @@ Example:
 
 ```
 # Load all packages referenced in this script, installing as necessary.
-source("imp.R"); load.my.pkgs()
+source("imp.R"); load.pkgs(find.pkgs())
 
 # Load a long list of packages which spans multiple lines.
 load.pkgs(c('package1', 'package2', 'package3', 

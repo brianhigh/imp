@@ -11,9 +11,9 @@ load.pkgs <- function(pkgs, repos = "http://cran.r-project.org") {
             library(x, character.only = TRUE)}})
 }
 
-# If running as a script, try to load all packages referenced in this script.
+# If running as a script, try to find all packages referenced in this script.
 # Only works for library(), require(), etc., calls which fit on a single line.
-load.my.pkgs <- function() {
+find.pkgs <- function() {
     if (length(sys.frames()) > 0) {
         filename <- sys.frame(1)$ofile
         pkgs <- readLines(filename, warn = FALSE)
@@ -23,8 +23,8 @@ load.my.pkgs <- function() {
         pkgs <- gsub(".*\\((.*)", "\\1", pkgs)
         pkgs <- gsub("(.*)\\).*", "\\1", pkgs)
         pkgs <- unlist(strsplit(x = pkgs, split = ",[ ]*"))
-        pkgs <- gsub('["()]', "", pkgs)
+        pkgs <- gsub('[\'"()]', "", pkgs)
         pkgs <- unique(pkgs[!grepl("=|^x$", pkgs)])
-        load.pkgs(pkgs)
+        return(pkgs)
     }
 }
