@@ -28,7 +28,7 @@ load.pkgs <- function(pkgs, repos = 'http://cran.r-project.org', bioc = FALSE) {
 # Only works for library, require, etc., calls which fit on a single line.
 find.pkgs <- function(filename = sys.frame(1)$ofile) {
     # Construct a regular expression to use for finding package names.
-    find.func = c('library', 'require', 'install.packages', 'biocLite')
+    find.func <- c('library', 'require', 'install.packages', 'biocLite')
     func.regex <- gsub('\\.', '\\\\.', paste(find.func, collapse = '|'))
     pkgs.regex <- paste0('^[^#]*(', func.regex, ')\\s*\\(')
     
