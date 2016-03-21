@@ -18,7 +18,7 @@ load.pkgs <- function(pkgs, repos = 'http://cran.r-project.org') {
 # Try to find all packages referenced in an R script with library, require, etc.
 # Only works for library, require, etc., calls which fit on a single line.
 find.pkgs <- function(filename = sys.frame(1)$ofile) {
-    # Construct a regular expression to use for finding package names
+    # Construct a regular expression to use for finding package names.
     find.func = c('library', 'require', 'install.packages')
     func.regex <- gsub('\\.', '\\\\.', paste(find.func, collapse = '|'))
     pkgs.regex <- paste0('^[^#]*(', func.regex, ')\\s*\\(')
