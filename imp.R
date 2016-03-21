@@ -15,12 +15,12 @@ load.pkgs <- function(pkgs, repos = "http://cran.r-project.org") {
 # Only works for library(), require(), etc., calls which fit on a single line.
 find.pkgs <- function(filename = sys.frame(1)$ofile) {
     pkgs <- readLines(filename, warn = FALSE)
-    pkgs <- unlist(strsplit(x = pkgs, split = ";[ ]*"))
+    pkgs <- unlist(strsplit(x = pkgs, split = ";\\s*"))
     pkgs.regex <- "^[^#]*(library|require|install\\.packages)\\s*\\("
     pkgs <- pkgs[grepl(pkgs.regex, pkgs)]
     pkgs <- gsub(".*\\((.*)", "\\1", pkgs)
     pkgs <- gsub("(.*)\\).*", "\\1", pkgs)
-    pkgs <- unlist(strsplit(x = pkgs, split = ",[ ]*"))
+    pkgs <- unlist(strsplit(x = pkgs, split = ",\\s*"))
     pkgs <- gsub('[\'"()]', "", pkgs)
     pkgs <- unique(pkgs[!grepl("=|^x$", pkgs)])
     return(pkgs)
