@@ -18,8 +18,8 @@ load.pkgs <- function(pkgs, repos = 'http://cran.r-project.org', bioc = FALSE) {
         biocLite(x, ask = FALSE, suppressUpdates = TRUE)
     }
     result <- sapply(pkgs, function(x) { 
-        if (! is.installed(x)) inst.cran(x)
         if (bioc == TRUE & ! is.installed(x)) inst.bioc(x)
+        if (! is.installed(x)) inst.cran(x)
         library(x, character.only = TRUE)
     })
 }
