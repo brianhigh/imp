@@ -79,7 +79,3 @@ Example:
 source('imp.R'); find.pkgs('my_script.R')
 ```
 
-This functionality is similar to the R package [install.load](https://cran.r-project.org/web/packages/install.load/index.html) except that can also search your
-calling script for packages to load (or install then load). It contains
-a function `load.pkgs` which is like the `install_load` function in that
-package. You may edit `load.pkgs` to use a different mirror.
