@@ -1,6 +1,6 @@
 # imp: Install missing packages
 #
-# Load all packages referenced in this script, installing as necessary.
+# Load all packages referenced in a script, installing as necessary.
 # Applies to calling script when sourced using the source() function.
 # Example usage: source("imp.R"); imp()
 # https://github.com/brianhigh/imp ; License: Public Domain (CC0 1.0)
@@ -28,7 +28,7 @@ find.pkgs <- function(filename = sys.frame(1)$ofile) {
     return(pkgs)
 }
 
-# Find and load packages.
+# Find and load packages, installing as necessary.
 imp <- function(repos = "http://cran.r-project.org") {
     load.pkgs(find.pkgs(), repos = repos)
 }
