@@ -20,14 +20,14 @@ The idea is to place the following code at the beginning of a script:
 
 ```
 # Load all packages referenced in this script, installing as necessary.
-source("imp.R"); load.pkgs(find.pkgs())
+source("imp.R"); imp()
 ```
 
 Or, if you wish to set your preferred package repository:
 
 ```
 # Load all packages referenced in this script, installing as necessary.
-source("imp.R"); load.pkgs(find.pkgs(), repos = "http://cran.fhcrc.org")
+source("imp.R"); imp(repos = "http://cran.fhcrc.org")
 ```
 
 ... assuming that the path to `imp.R` is correct given its actual location.
@@ -56,15 +56,23 @@ available for use after sourcing the `imp.R` script.
 Example:
 
 ```
-# Load all packages referenced in this script, installing as necessary.
-source("imp.R"); load.pkgs(find.pkgs())
-
-# Load a long list of packages which spans multiple lines.
+# Load a long list of packages may span multiple lines.
+source("imp.R")
 load.pkgs(c('package1', 'package2', 'package3', 
             'package4', 'package5', 'package6'))
 ```
 
-This script is similar to the R package [install.load](https://cran.r-project.org/web/packages/install.load/index.html) except that it will search your
+To list the packages referenced in a particular script, use the `find.pkgs`
+function.
+
+Example:
+
+```
+# Find all package names referenced in my_script.R and print to console.
+source("imp.R"); find.pkgs("my_script.R")
+```
+
+This functionality is similar to the R package [install.load](https://cran.r-project.org/web/packages/install.load/index.html) except that can also search your
 calling script for packages to load (or install then load). It contains
 a function `load.pkgs` which is like the `install_load` function in that
 package. You may edit `load.pkgs` to use a different mirror.
