@@ -1,6 +1,6 @@
 # Load all packages referenced in this script, installing as necessary.
 # Applies to calling script when sourced using the source() function.
-# Example usage: source("imp.R"); load.my.pkgs()
+# Example usage: source("imp.R"); load.pkgs(find.pkgs())
 # https://github.com/brianhigh/imp ; License: Public Domain (CC0 1.0)
 
 # Load one or more packages into memory, installing as needed.
