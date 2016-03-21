@@ -1,6 +1,6 @@
 # imp: install missing packages
 
-Description: R script to install missing packages referenced from a calling script.
+Description: Install missing packages referenced from a calling script.
 
 This repository and the R script it hosts has been released into the Public
 Domain. Feel free to use it without restriction. See the LICENSE file for
@@ -20,14 +20,14 @@ The idea is to place the following code at the beginning of a script:
 
 ```
 # Load all packages referenced in this script, installing as necessary.
-source("imp.R"); imp()
+source('imp.R'); imp()
 ```
 
 Or, if you wish to set your preferred package repository:
 
 ```
 # Load all packages referenced in this script, installing as necessary.
-source("imp.R"); imp(repos = "http://cran.fhcrc.org")
+source('imp.R'); imp(repos = 'http://cran.fhcrc.org')
 ```
 
 ... assuming that the path to `imp.R` is correct given its actual location.
@@ -56,8 +56,8 @@ available for use after sourcing the `imp.R` script.
 Example:
 
 ```
-# Load a long list of packages may span multiple lines.
-source("imp.R")
+# Load a long list of packages (spanning multiple lines).
+source('imp.R')
 load.pkgs(c('package1', 'package2', 'package3', 
             'package4', 'package5', 'package6'))
 ```
@@ -69,7 +69,7 @@ Example:
 
 ```
 # Find all package names referenced in my_script.R and print to console.
-source("imp.R"); find.pkgs("my_script.R")
+source('imp.R'); find.pkgs('my_script.R')
 ```
 
 This functionality is similar to the R package [install.load](https://cran.r-project.org/web/packages/install.load/index.html) except that can also search your
