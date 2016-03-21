@@ -8,6 +8,7 @@
 # Example usage:  source('imp.R'); imp()
 # Example usage:  source('imp.R'); imp(bioc = TRUE)
 # Example usage:  source('imp.R'); imp(repos = 'http://cran.fhcrc.org')
+# Example usage:  source('imp.R'); load.pkgs(find.pkgs('my_script.R'))
 
 # Load one or more packages into memory, installing as needed.
 load.pkgs <- function(pkgs, repos = 'http://cran.r-project.org', bioc = FALSE) {
