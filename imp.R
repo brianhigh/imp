@@ -58,7 +58,7 @@ imp <- function(filename = sys.frame(1)$ofile,
 }
 
 # Load packages referenced in all files matching a filename pattern in a path.
-imp.files <- function(path = '.', pattern = '(.R|.r|.Rmd|.rmd|.RMD)$',
+imp.files <- function(path = '.', pattern = '\\.(R|r|Rmd|rmd|RMD)$',
                       repos = 'http://cran.r-project.org', bioc = FALSE) {
     load.pkgs(unique(unlist(sapply(list.files(path, pattern), find.pkgs))),
               repos = repos, bioc = bioc)
