@@ -79,3 +79,5 @@ Example:
 source('imp.R'); find.pkgs('my_script.R')
 ```
 
+For more examples, please see the opening comments in `imp.R`.
+

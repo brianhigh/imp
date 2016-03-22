@@ -14,7 +14,7 @@
 # imp(bioc = TRUE)                      # Same, using biocLite to install.
 # imp(repos = 'http://cran.fhcrc.org')  # Use this repository to install.
 # imp(filename = 'my_script.R')         # Load packages referenced in a file.
-# imp.path()                            # Load packages from all R/Rmd files.
+# imp.files()                           # Load packages from all R/Rmd files.
 
 # Load one or more packages into memory, installing as needed.
 load.pkgs <- function(pkgs, repos = 'http://cran.r-project.org', bioc = FALSE) {
@@ -58,8 +58,8 @@ imp <- function(filename = sys.frame(1)$ofile,
 }
 
 # Load packages referenced in all files matching a filename pattern in a path.
-imp.path <- function(path = '.', pattern = '(.R|.r|.Rmd|.rmd|.RMD)$',
-                     repos = 'http://cran.r-project.org', bioc = FALSE) {
+imp.files <- function(path = '.', pattern = '(.R|.r|.Rmd|.rmd|.RMD)$',
+                      repos = 'http://cran.r-project.org', bioc = FALSE) {
     load.pkgs(unique(unlist(sapply(list.files(path, pattern), find.pkgs))),
               repos = repos, bioc = bioc)
 }
