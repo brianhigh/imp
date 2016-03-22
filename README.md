@@ -16,6 +16,8 @@ crashes due to missing packages. You will also be able to avoid having
 to put package installation commands into your scripts, which might
 needlessly install a package to a system which already had that package.
 
+## Usage
+
 The idea is to place the following code at the beginning of a script:
 
 ```
@@ -49,16 +51,18 @@ script for `library`, `require`, and `install.packages` function calls,
 attempt to load those packages passed to those functions, and attempt to 
 install any packages which fail to load.
 
-Note: This will only work for `library`, `require`, etc., function calls 
-which fit on a single line. If the statement spans more than one line, only
-the packages listed on the same line as the `library`, `require`, etc., 
-function name will be loaded. Since most R programs only load a small
-number of packages in any given statement, this is not seen as a major
-drawback. If you do have a script with long lists of packages to load,
-either break the the operations into single-line commands, or use the
-function `load.pkgs` instead of `library`, `require`, etc., for these
-situations. The `load.pkgs` function is defined in `imp.R` and will be 
-available for use after sourcing the `imp.R` script.
+## Limitations
+
+The `find.pkgs` function will only work for `library`, `require`, etc., 
+function calls which fit on a single line. If the statement spans more 
+than one line, only the packages listed on the same line as the `library`, 
+`require`, etc., function name will be loaded. Since most R programs only 
+load a small number of packages in any given statement, this is not seen as 
+a major drawback. If you do have a script with long lists of packages to 
+load, either break the the operations into single-line commands, or use the
+function `load.pkgs` for these situations. The `load.pkgs` function is 
+defined in `imp.R` and will be available for use after sourcing the 
+`imp.R` script.
 
 Example:
 
@@ -77,6 +81,16 @@ Example:
 ```
 # Find all package names referenced in my_script.R and print to console.
 source('imp.R'); find.pkgs('my_script.R')
+```
+
+## Other usage examples
+
+If you want to first check to make sure that `imp.R` is found before
+attempting to use it, you can call it like this:
+
+```
+# Try to load all packages referenced in this script, installing as necessary.
+impr <- "imp.R"; if (file.exists(impr)) { source(impr); imp() }
 ```
 
 For more examples, please see the opening comments in `imp.R`.
